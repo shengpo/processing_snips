@@ -28,6 +28,8 @@
 
 
 ###備註
+(2013.2.28 | 目前 [helloPlayer](https://github.com/shengpo/helloPlayer) 移除此架構，等測試之後，若需要再轉回此架構)
+
 這個osc multicast範例用於helloPlayer project<br/>
 使helloPlayer的server跟client不需要在每次展出或使用時都要根據不同的使用狀況去設定IP跟osc port<br/>
 希望透過multicast的使用，讓helloPlayer使用者(很有可能是較無技術背景的藝術家們)能容易上手
