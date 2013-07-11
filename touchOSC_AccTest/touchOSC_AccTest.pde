@@ -1,5 +1,6 @@
 /*
 此程式用來測試讀取三軸加速器的數值，並做一個簡易的轉換
+demo video: http://youtu.be/o1J6lNzhyGs
 
 touchOSC在手機上的設定：
  - 開啟 Stay connected 
