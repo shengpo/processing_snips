@@ -14,7 +14,9 @@
  - by Shen, Sheng-Po (shengpo.github.com) and Wu, Kuan-Ying (www.mutienliao.tw)
  - tested on Processing 2.0b7 (other version of PDE should work fine.)
  - date: 2013.1.22
- 
+
+ - add the function of saving file to the place you want (2013.07.15)
+ - tested on Processing 2.0.1 (2013.07.15)
  *************************************************/
 
 class aTileSaver {  
@@ -40,11 +42,11 @@ class aTileSaver {
     // If init() is called without specifying number of tiles, getMaxTiles()  
     // will be called to estimate number of tiles according to free memory.  
     public void init(String _filename) {  
-        init(_filename, getMaxTiles(p.width));
+        init("", _filename, getMaxTiles(p.width));
     }  
 
     // Initialize using a filename to output to and number of tiles to use.  
-    public void init(String _filename, int _num) {  
+    public void init(String location, String _filename, int _num) {  
         tileFilename=_filename;  
         tileNum=_num;  
         tileNumSq=(tileNum*tileNum);  
@@ -54,9 +56,19 @@ class aTileSaver {
         cameraZ=(height/2.0f)/p.tan(p.PI*FOV/360.0f);  
         p.println("aTileSaver: "+tileNumSq+" tiles and Resolution: "+(p.width*tileNum)+"x"+(p.height*tileNum));  
 
+        if (!new java.io.File(tileFilename).isAbsolute()){
+            if(location.equals("") || location==null){
+                tileFilename=p.dataPath(tileFilename);  
+            }else{
+                if(location.lastIndexOf("/") == location.length()-1){
+                    tileFilename = location + tileFilename;
+                }else{
+                    tileFilename = location + "/" + tileFilename;
+                }
+            }
+        }
+
         // remove extension from filename  
-        if (!new java.io.File(tileFilename).isAbsolute())  
-            tileFilename=p.dataPath(tileFilename);  
         tileFilename=noExt(tileFilename);  
         p.createPath(tileFilename);  
 
